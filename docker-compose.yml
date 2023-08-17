@@ -1,0 +1,15 @@
+version: "3"
+services:
+    apache_standalone:
+        image: httpd:2.4-alpine
+        container_name: apache_standalone
+        build:
+            context: ../apache_standalone
+            dockerfile: ./dockerfiles/apache.dockerfile
+        ports: 
+            - "8888:80"
+        tty: true
+        volumes: 
+            - ./host_files/:/var/www/html
+            - "/etc/localtime:/etc/localtime:ro"
+        restart: unless-stopped
